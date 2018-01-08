@@ -1,0 +1,16 @@
+ 1434  apt --fix-broken install
+ 1435  sudo -i apt --fix-broken install
+ 1778  sudo apt install fcitx-hangul
+ 1870  conda install pytorch pillow
+ 1962  conda install pytorch
+ 1977  pip uninstall tensorflow
+ 1978  pip install tensorflow
+ 1979  pip install magenta
+ 1981  pip uninstall magenta
+ 1982  pip install magenta
+ 2049  sudo aptitude install fluid-soundfont-gm
+ 2051  sudo aptitude install qjackctl
+ 2056  sudo aptitude install qjackctl
+ 2058  sudo aptitude install vmpk
+ 2062  hitory | grep -e "install" > his.out
+ 2063  history | grep -e "install" > his.out

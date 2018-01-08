@@ -1,0 +1,25 @@
+0. to run pretrained models (also untrained models here)
+	https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn
+
+	--> 0107command_pretrained.txt
+
+1. software synthesizer: 
+	http://www.fluidsynth.org
+	
+sudo -i
+aptitude fluidsynth
+1-0) download soundfont
+ 2049  sudo aptitude install fluid-soundfont-gm
+ 
+
+
+1-1) launch synth with soundfont
+fluidsynth /usr/share/sounds/sf2/FluidR3_GM.sf2
+ 2051  sudo aptitude install qjackctl   <--- artful ardvak(1710) has conflict with this 
+						but anyway overwrited to downgrade 
+
+re-login
+
+
+
+
