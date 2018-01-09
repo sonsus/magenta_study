@@ -4,8 +4,9 @@ CONFIG options:
 	attention_rnn
 
 
-BUNDLE_PATH=/home/seonils/Documents/magenta_music/basic_rnn.mag
-CONFIG=basic_rnn
+
+BUNDLE_PATH=/home/seonils/codes/magenta_study/lookback_rnn.mag
+CONFIG=lookback_rnn
 
 melody_rnn_generate \
 --config=${CONFIG} \

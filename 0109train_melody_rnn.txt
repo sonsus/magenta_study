@@ -1,0 +1,28 @@
+Training melody rnn with custom Dataset : does this work with polyphony
+---------------------------------------
+
+
+0. What dataset?
+
+datasets below are used: 
+
+
+1. reddit custom
+https://www.reddit.com/r/datasets/comments/3akhxy/the_largest_midi_collection_on_the_internet/
+
+    download link:
+    https://mega.co.nz/#!Elg1TA7T!MXEZPzq9s9YObiUcMCoNQJmCbawZqzAkHzY4Ym6Gs_Q
+
+2. Lakh MIDI Dataset 
+    from million songs dataset (seems like it doesnt cover the whole part of MSD)
+
+
+INPUT_DIRECTORY=<folder containing MIDI and/or MusicXML files. can have child folders.>
+
+# TFRecord file that will contain NoteSequence protocol buffers.
+SEQUENCES_TFRECORD=/tmp/notesequences.tfrecord
+
+convert_dir_to_note_sequences \
+  --input_dir=$INPUT_DIRECTORY \
+  --output_file=$SEQUENCES_TFRECORD \
+  --recursive
