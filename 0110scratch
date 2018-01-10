@@ -1,0 +1,11 @@
+# running dir should be on /tmp/melody_rnn 
+# otherwise need to fix the dir inside the code
+
+melody_rnn_generate \
+--config=attention_rnn \
+--run_dir=/tmp/melody_rnn/logdir/run1 \
+--output_dir=/home/seonilson92/melodyrnn/lmd_full/lmd_0_6hr_stop_gen \
+--num_outputs=10 \
+--num_steps=128 \
+--hparams="batch_size=64,rnn_layer_sizes=[64,64]" \
+--primer_melody="[60]"
