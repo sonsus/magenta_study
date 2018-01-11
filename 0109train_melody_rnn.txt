@@ -4,25 +4,44 @@ Training melody rnn with custom Dataset : does this work with polyphony
 
 0. What dataset?
 
-datasets below are used: 
+    datasets below are used: 
 
 
-1. reddit custom
-https://www.reddit.com/r/datasets/comments/3akhxy/the_largest_midi_collection_on_the_internet/
+    looks bad
+        ---->   (1) reddit custom
+                https://www.reddit.com/r/datasets/comments/3akhxy/the_largest_midi_collection_on_the_internet/
 
-    download link:
-    https://mega.co.nz/#!Elg1TA7T!MXEZPzq9s9YObiUcMCoNQJmCbawZqzAkHzY4Ym6Gs_Q
+                    download link:
+                    https://mega.co.nz/#!Elg1TA7T!MXEZPzq9s9YObiUcMCoNQJmCbawZqzAkHzY4Ym6Gs_Q
 
-2. Lakh MIDI Dataset 
-    from million songs dataset (seems like it doesnt cover the whole part of MSD)
+    (2)Lakh MIDI Dataset 
+        from million songs dataset (seems like it doesnt cover the whole part of MSD)
 
 
-INPUT_DIRECTORY=<folder containing MIDI and/or MusicXML files. can have child folders.>
+1.process to make dataset
+    (1)into tf.record
 
-# TFRecord file that will contain NoteSequence protocol buffers.
-SEQUENCES_TFRECORD=/tmp/notesequences.tfrecord
+    INPUT_DIRECTORY=<folder containing MIDI and/or MusicXML files. can have child folders.>
 
-convert_dir_to_note_sequences \
-  --input_dir=$INPUT_DIRECTORY \
-  --output_file=$SEQUENCES_TFRECORD \
-  --recursive
+    # TFRecord file that will contain NoteSequence protocol buffers.
+    SEQUENCES_TFRECORD=/tmp/notesequences.tfrecord
+
+    convert_dir_to_note_sequences \
+      --input_dir=$INPUT_DIRECTORY \
+      --output_file=$SEQUENCES_TFRECORD \
+      --recursive
+
+    (2)into dataset
+    melody_rnn_create_dataset \
+    --config=<one of 'basic_rnn', 'lookback_rnn', or 'attention_rnn'> \
+    --input=/tmp/notesequences.tfrecord \
+    --output_dir=/tmp/melody_rnn/sequence_examples \
+    --eval_ratio=0.10
+
+2.train it
+    melody_rnn_train \
+    --config=attention_rnn \
+    --run_dir=/tmp/melody_rnn/logdir/run1 \
+    --sequence_example_file=/tmp/melody_rnn/sequence_examples/training_melodies.tfrecord \
+    --hparams="batch_size=64,rnn_layer_sizes=[64,64]" \
+    --num_training_steps=20000
